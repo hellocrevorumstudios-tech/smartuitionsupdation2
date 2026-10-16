@@ -1,0 +1,530 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="If you are looking for the best tuition centre in Coimbatore, Smartuitions provides premium academic mentoring, AI-powered performance tracking, structured learning systems, and expert teachers dedicated to student success.">
+  <title>Smartuitions | Easy Learning</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .hero-book-animation {
+      position: relative;
+      width: min(460px, 100%);
+      aspect-ratio: 0.92;
+      overflow: hidden;
+      isolation: isolate;
+      border: 1px solid rgba(243, 107, 33, 0.18);
+      border-radius: 34px;
+      background:
+        linear-gradient(rgba(255, 255, 255, 0.72), rgba(255, 247, 239, 0.9)),
+        radial-gradient(circle at 50% 70%, rgba(243, 107, 33, 0.2), transparent 48%);
+      box-shadow: 0 28px 70px rgba(82, 43, 22, 0.16);
+      perspective: 1100px;
+    }
+
+    .hero-book-animation::before {
+      content: "";
+      position: absolute;
+      inset: 24px;
+      border: 1px solid rgba(243, 107, 33, 0.16);
+      border-radius: 26px;
+      pointer-events: none;
+    }
+
+    .hero-book-animation::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 52px;
+      width: 72%;
+      height: 34px;
+      border-radius: 50%;
+      background: rgba(82, 43, 22, 0.18);
+      filter: blur(15px);
+      transform: translateX(-50%);
+      z-index: -1;
+    }
+
+    .book-stage {
+      position: absolute;
+      left: 50%;
+      bottom: 38px;
+      width: 82%;
+      height: 180px;
+      transform: translateX(-50%);
+      transition: transform 0.45s ease;
+    }
+
+    .hero-book-animation:hover .book-stage {
+      transform: translateX(-50%) translateY(-7px) rotateX(2deg);
+    }
+
+    .hero-book-animation .book {
+      position: absolute;
+      inset: 12px 0 0;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      border: 0;
+      transform-style: preserve-3d;
+      transform: rotateX(56deg);
+      animation: bookBreathe 5.5s ease-in-out infinite;
+    }
+
+    .hero-book-animation .book-cover,
+    .hero-book-animation .page {
+      position: absolute;
+      top: 12px;
+      width: 49.5%;
+      height: 132px;
+      transform-style: preserve-3d;
+      backface-visibility: hidden;
+    }
+
+    .hero-book-animation .book-cover {
+      background: linear-gradient(145deg, #f36b21, #d9510e);
+      border: 2px solid rgba(120, 48, 12, 0.28);
+      box-shadow: 0 16px 32px rgba(129, 53, 14, 0.2);
+    }
+
+    .hero-book-animation .book-cover.left {
+      left: 0;
+      border-radius: 20px 6px 10px 20px;
+      transform-origin: right center;
+      animation: openLeftCover 4.8s ease-in-out infinite;
+    }
+
+    .hero-book-animation .book-cover.right {
+      right: 0;
+      border-radius: 6px 20px 20px 10px;
+      transform-origin: left center;
+      animation: openRightCover 4.8s ease-in-out infinite;
+    }
+
+    .hero-book-animation .page {
+      top: 18px;
+      height: 120px;
+      background:
+        repeating-linear-gradient(0deg, transparent 0 14px, rgba(82, 43, 22, 0.08) 14px 15px),
+        linear-gradient(135deg, #fffdf8, #fff2dc);
+      border: 1px solid rgba(191, 139, 91, 0.28);
+      box-shadow: 0 10px 20px rgba(82, 43, 22, 0.1);
+    }
+
+    .hero-book-animation .page.left-page {
+      left: 2.5%;
+      border-radius: 16px 4px 8px 16px;
+      transform-origin: right center;
+      transform: rotateY(-7deg);
+    }
+
+    .hero-book-animation .page.right-page {
+      right: 2.5%;
+      border-radius: 4px 16px 16px 8px;
+      transform-origin: left center;
+      transform: rotateY(7deg);
+    }
+
+    .hero-book-animation .page.flip-one,
+    .hero-book-animation .page.flip-two,
+    .hero-book-animation .page.flip-three {
+      left: 50%;
+      width: 47%;
+      transform-origin: left center;
+      border-radius: 4px 16px 16px 8px;
+    }
+
+    .hero-book-animation .page.flip-one { animation: flipPage 5.4s ease-in-out 0.35s infinite; }
+    .hero-book-animation .page.flip-two { animation: flipPage 5.4s ease-in-out 1.15s infinite; }
+    .hero-book-animation .page.flip-three { animation: flipPage 5.4s ease-in-out 1.95s infinite; }
+
+    .hero-book-animation .book-spine {
+      position: absolute;
+      left: 50%;
+      top: 18px;
+      width: 8px;
+      height: 126px;
+      border-radius: 999px;
+      background: linear-gradient(#ffb071, #c84608);
+      box-shadow: 0 0 18px rgba(243, 107, 33, 0.36);
+      transform: translateX(-50%) translateZ(8px);
+      z-index: 8;
+    }
+
+    .hero-book-animation .book-glow {
+      position: absolute;
+      left: 50%;
+      bottom: 108px;
+      width: 230px;
+      height: 185px;
+      background: linear-gradient(to top, rgba(243, 107, 33, 0.25), rgba(255, 199, 135, 0));
+      clip-path: polygon(35% 100%, 65% 100%, 100% 0, 0 0);
+      transform: translateX(-50%);
+      filter: blur(8px);
+      opacity: 0.72;
+      z-index: -1;
+      animation: glowPulse 3.2s ease-in-out infinite;
+    }
+
+    .hero-book-animation .floating-card {
+      --x: 0px;
+      --y: -100px;
+      position: absolute;
+      left: 50%;
+      bottom: 124px;
+      z-index: 10;
+      width: max-content;
+      max-width: 164px;
+      padding: 10px 13px;
+      border: 1px solid rgba(243, 107, 33, 0.2);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.86);
+      box-shadow: 0 14px 34px rgba(82, 43, 22, 0.13);
+      color: #522b16;
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.25;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      opacity: 0;
+      animation: riseAcademic 10s ease-in-out infinite;
+    }
+
+    .hero-book-animation .floating-card.exam { --x: -118px; --y: -134px; animation-delay: 0.25s; }
+    .hero-book-animation .floating-card.learning { --x: 118px; --y: -125px; animation-delay: 1.15s; }
+    .hero-book-animation .floating-card.student { --x: -112px; --y: -62px; animation-delay: 2.05s; }
+    .hero-book-animation .floating-card.parent { --x: 112px; --y: -50px; animation-delay: 2.95s; }
+    .hero-book-animation .floating-card.success {
+      --x: 0px;
+      --y: -220px;
+      max-width: 176px;
+      padding: 12px 18px;
+      border-color: rgba(243, 107, 33, 0.48);
+      background: linear-gradient(135deg, #f36b21, #ff914f);
+      box-shadow: 0 18px 38px rgba(243, 107, 33, 0.3);
+      color: #fff;
+      font-size: 13px;
+      animation-delay: 3.85s;
+    }
+
+    .hero-book-animation .success-mark {
+      display: inline-grid;
+      width: 20px;
+      height: 20px;
+      margin-right: 6px;
+      place-items: center;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.22);
+      vertical-align: -2px;
+    }
+
+    @keyframes openLeftCover {
+      0%, 12% { transform: rotateY(50deg); }
+      35%, 88% { transform: rotateY(-5deg); }
+      100% { transform: rotateY(50deg); }
+    }
+
+    @keyframes openRightCover {
+      0%, 12% { transform: rotateY(-50deg); }
+      35%, 88% { transform: rotateY(5deg); }
+      100% { transform: rotateY(-50deg); }
+    }
+
+    @keyframes flipPage {
+      0%, 20% { transform: rotateY(0deg); opacity: 0; }
+      26% { opacity: 1; }
+      48%, 72% { transform: rotateY(-176deg); opacity: 1; }
+      82%, 100% { transform: rotateY(-176deg); opacity: 0; }
+    }
+
+    @keyframes riseAcademic {
+      0%, 12% { opacity: 0; transform: translate(-50%, 50px) scale(0.88); }
+      28%, 72% { opacity: 1; transform: translate(calc(-50% + var(--x)), var(--y)) scale(1); }
+      82% { opacity: 1; transform: translate(calc(-50% + var(--x)), calc(var(--y) - 7px)) scale(1); }
+      100% { opacity: 0; transform: translate(calc(-50% + var(--x)), calc(var(--y) - 14px)) scale(0.96); }
+    }
+
+    @keyframes bookBreathe {
+      0%, 100% { transform: rotateX(56deg) translateY(0); }
+      50% { transform: rotateX(54deg) translateY(-5px); }
+    }
+
+    @keyframes glowPulse {
+      0%, 100% { opacity: 0.48; transform: translateX(-50%) scale(0.94); }
+      50% { opacity: 0.82; transform: translateX(-50%) scale(1.05); }
+ 3   }
+
+    @media (max-width: 640px) {
+      .hero-book-animation {
+        width: min(340px, 100%);
+        border-radius: 24px;
+      }
+
+      .hero-book-animation .floating-card {
+        max-width: 130px;
+        padding: 8px 10px;
+        font-size: 10px;
+      }
+
+      .hero-book-animation .floating-card.exam { --x: -88px; --y: -105px; }
+      .hero-book-animation .floating-card.learning { --x: 88px; --y: -98px; }
+      .hero-book-animation .floating-card.student { --x: -84px; --y: -45px; }
+      .hero-book-animation .floating-card.parent { --x: 84px; --y: -38px; }
+      .hero-book-animation .floating-card.success { --y: -170px; font-size: 11px; }
+      .book-stage { bottom: 20px; width: 88%; transform: translateX(-50%) scale(0.88); }
+      .hero-book-animation:hover .book-stage { transform: translateX(-50%) translateY(-4px) scale(0.88); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-book-animation *,
+      .hero-book-animation *::before,
+      .hero-book-animation *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+
+      .hero-book-animation .floating-card {
+        opacity: 1;
+        transform: translate(calc(-50% + var(--x)), var(--y));
+      }
+    }
+
+    .site-footer .footer-grid {
+      grid-template-columns: 1.4fr 0.8fr 1fr 1.1fr;
+    }
+
+    .footer-social .social-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: fit-content;
+      max-width: 100%;
+      margin: 10px 0;
+      color: #fff;
+      font-weight: 700;
+      overflow-wrap: anywhere;
+    }
+
+    .footer-social .social-link svg {
+      flex: 0 0 34px;
+      width: 34px;
+      height: 34px;
+      padding: 8px;
+      border-radius: 50%;
+      fill: #fff;
+    }
+
+    .footer-social .youtube-link svg {
+      background: #ff0000;
+    }
+
+    .footer-social .instagram-link svg {
+      background: linear-gradient(135deg, #f58529, #dd2a7b 48%, #8134af 76%, #515bd4);
+    }
+
+    .footer-social .social-link:hover span {
+      color: #fff;
+    }
+
+    @media (max-width: 980px) {
+      .site-footer .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav-shell">
+      <a class="brand" href="index.html" aria-label="Smartuitions home">
+        <img src="assets/smarttuitions-logo.png" alt="Smartuitions logo">
+      </a>
+      <button class="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-links" data-nav-links>
+        <a class="active" href="index.html">Home</a>
+        <a href="regular-tuition.html">Regular Tuition</a>
+        <a href="techno-tuition.html">Techno Tuition</a>
+        <a href="centum-promise.html">Centum Promise</a>
+        <a href="test-batch.html">Test Batch</a><a href="franchise.html">Franchise</a><a class="creator-nav-desktop" href="creator.html">Behind The Build</a><a class="creator-nav-mobile" href="#created-by">Behind The Build</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <a class="nav-cta" href="tel:9345713457">Call Now</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero section-pad">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">Trusted By Families Who Expect Strong Academic Performance</p>
+          <h1>Welcome to the World of Easy Learning</h1>
+          <p class="hero-text">If you are looking for the best tuition centre in Coimbatore, Smartuitions provides premium academic mentoring, AI-powered performance tracking, structured learning systems, and expert teachers dedicated to student success.</p>
+          <div class="hero-actions">
+            <a class="btn primary" href="contact.html">Enroll Now</a>
+            <a class="btn secondary" href="https://wa.me/919345713457" target="_blank" rel="noopener">WhatsApp Us</a>
+            <a class="btn ghost" href="tel:9345713457">Call Now</a>
+          </div>
+        </div>
+        <div class="hero-visual reveal">
+          <div class="centum-image">
+           <img src="assets/smarttuitions-brand-strip.png" alt="Smartuitions excellence badge">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats-strip">
+      <div class="container stats-grid">
+        <div class="stat-card reveal"><strong>15+</strong><span>Years Excellence</span></div>
+        <div class="stat-card reveal"><strong>2000+</strong><span>Students</span></div>
+        <div class="stat-card reveal"><strong>99.9%</strong><span>Success Rate</span></div>
+        <div class="stat-card reveal"><strong>1:10</strong><span>Students Per Batch</span></div>
+      </div>
+    </section>
+
+    <section class="section-pad intro-section">
+      <div class="container split-section">
+        <div class="section-heading align-left reveal">
+          <p class="eyebrow">Introduction</p>
+          <h2>Premium mentoring with measurable progress</h2>
+          <p>Smartuitions combines structured teaching, daily academic support, disciplined testing, parent coordination, and AI-powered performance tracking to help students learn with clarity and confidence.</p>
+        </div>
+        <div class="trust-images reveal">
+          <div class="centum-image year-image">
+            <img src="assets/centum.png" alt="Centum Guarantee">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad soft-bg">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Our Learning Methods</p>
+          <h2>Strategic Academic Support For Every Student </h2>
+        </div>
+        <div class="card-grid four">
+          <a class="feature-card reveal" href="regular-tuition.html"><h3>Regular Tuition</h3><p>Doubt clarification, homework follow-up, tests, exam support, and individual attention.</p></a>
+          <a class="feature-card reveal" href="techno-tuition.html"><h3>Techno Tuition</h3><p>Result-oriented learning through exam strategy, learning strategy, student cooperation, and parents' daily coordination.</p></a>
+          <article class="feature-card reveal"><h3>Centum Promise</h3><p>Disciplined centum-focused methodology combining student effort, parent follow-up, and expert strategy.</p></article>
+          <article class="feature-card reveal"><h3>Test Batch</h3><p>A premium test batch system for CBSE, ICSE and Samacheer students.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad">
+      <div class="container split-section">
+        <div class="section-heading align-left reveal">
+          <p class="eyebrow">Advantages of Smartuitions</p>
+          <h2>Advantages built for consistent academic improvement</h2>
+          <p>Small batches, mentor support, expert materials, and transparent progress tracking help students learn with confidence and parents stay informed.</p>
+        </div>
+        <div class="advantage-list reveal">
+          <div>All major subjects covered</div>
+          <div>One Teacher : Ten Students</div>
+          <div>Subject experts and mentor support</div>
+          <div>Expert and exclusive test materials</div>
+          <div>AI-based performance tracker</div>
+          <div>Standard-wise classrooms</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Outcome</p>
+          <h2>Centum-focused learning with confident</h2>
+          <p>When tuition support, student effort, and parent coordination work together, students gain clarity, discipline, measurable progress, and stronger exam confidence.</p>
+        </div>
+        <div class="motivation-card reveal">Clear strategy + daily support + parent coordination = better results.</div>
+      </div>
+    </section>
+
+    <section class="section-pad">
+      <div class="container responsibility-grid">
+        <div class="section-heading align-left reveal"><p class="eyebrow">Responsibility Breakdown</p><h2>Academic success works best as a partnership</h2><p>Clear roles help every student stay focused, supported, and accountable.</p></div>
+        <div class="pie-card reveal">
+          <div class="pie-chart" aria-label="60% tuition responsibility, 25% student responsibility, 15% parent responsibility"></div>
+          <div class="legend"><span><i class="orange"></i>60% Tuition Responsibility</span><span><i class="blue"></i>25% Student Responsibility</span><span><i class="brown"></i>15% Parent Responsibility</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="admission-banner section-pad">
+      <div class="container banner-inner reveal">
+        <div>
+          <p class="eyebrow">Limited Batch Strength</p>
+          <h2>Admissions Open Now</h2>
+          <p>Reserve a seat for regular tuition, centum promise, or test batch programs.</p>
+        </div>
+        <a class="btn light" href="contact.html">Start Admission</a>
+      </div>
+    </section>
+
+    <section class="section-pad creator-section creator-mobile-only" id="created-by">
+      <div class="container creator-grid">
+        <figure class="creator-photo reveal">
+          <img src="assets/creator-section.png" width="866" height="1368" alt="Nithin, founder of Crevorum Studios and NodeLit, who created and manages this website">
+        </figure>
+        <div class="creator-copy reveal">
+          <p class="eyebrow">Meet The Creator</p>
+          <h2>Website Created and Managed By</h2>
+          <p class="creator-name">Nithin | Founder of Crevorum Studios &amp; NodeLit</p>
+          <p>Hello, everyone! I’m Nithin, the founder of Crevorum Studios and NodeLit. I’m a ninth-grade student at The PSBB Millennium School, Coimbatore, and I developed this website. I’d like to share how this project began.</p>
+          <p>I initially created this website as a draft project. One day, I brought my laptop to tuition and showed the website to Mr.Antony sir. He appreciated my work and encouraged me to redesign a website for the institute. I was surprised that a project I had created just for practice had suddenly turned into a real business opportunity.</p>
+          <p>Managing my time was challenging, as I had to balance my schoolwork with my evening tuition commitments. However, being a night owl, I often preferred working on my projects at night.</p>
+          <p>I’m grateful to my parents for providing me with this exposure, and I would also like to sincerely thank Mr.Antony sir for his support, encouragement, and belief in my work.</p>
+          <div class="creator-links">
+            <a class="brand-link" href="https://crevorumstudios.vercel.app/" target="_blank" rel="noopener" aria-label="Crevorum Studios website">
+              <span class="brand-lockup"><img class="mark" src="assets/crevorum-crescent-trim.png" alt="" width="807" height="791"><img class="name" src="assets/crevorum-wordmark-trim.png" alt="Crevorum Studios" width="1351" height="212"></span>
+              <span class="brand-url">https://crevorumstudios.vercel.app/</span>
+            </a>
+            <a class="brand-link dark" href="https://nodelit.vercel.app/" target="_blank" rel="noopener" aria-label="NodeLit website">
+              <span class="brand-lockup"><img class="mark" src="assets/nodelit-symbol-trim.png" alt="" width="761" height="888"><img class="name" src="assets/nodelit-wordmark-trim.png" alt="NodeLit" width="1575" height="289"></span>
+              <span class="brand-url">https://nodelit.vercel.app/</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section-pad">
+      <div class="container contact-grid">
+        <div class="contact-panel reveal">
+          <h2>Contact Details</h2>
+          <div class="contact-list">
+            <p><strong>Contact Person:</strong> Mr.Antony.S</p>
+            <p><strong>Phone:</strong> <a href="tel:9345713457">9345713457</a></p>
+            <p><strong>Email:</strong> <a href="mailto:care@smartuitions.com">care@smartuitions.com</a></p>
+            <p><strong>Working Days:</strong> Monday to Saturday</p>
+          </div>
+        </div>
+        <div class="contact-panel reveal">
+          <h2>Main Office Address</h2>
+          <address class="sr-only">Smartuitions<br>No.1, Vaigai Mahal<br>1st Cross, Om Ganesh Nagar<br>Behind Kattu Vinayagar Kovil<br>Vadavalli<br>Coimbatore - 641041</address>
+          <div class="address-map"><iframe title="Smartuitions location on Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Smartuitions%2C%20No.1%2C%20Vaigai%20Mahal%2C%201st%20Cross%2C%20Om%20Ganesh%20Nagar%2C%20Behind%20Kattu%20Vinayagar%20Kovil%2C%20Vadavalli%2C%20Coimbatore%20-%20641041&output=embed"></iframe><a class="address-map-link" href="https://maps.app.goo.gl/Guz5S6XVsqjKHAnx5" target="_blank" rel="noopener">Open in Google Maps</a></div>
+          <div class="contact-actions"><a class="btn primary" href="tel:9345713457">Call Now</a><a class="btn secondary" href="https://wa.me/919345713457" target="_blank" rel="noopener">WhatsApp Us</a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div><img src="assets/smarttuitions-logo.png" alt="Smartuitions logo"><p>Structured learning, expert mentoring, and measurable academic growth.</p></div>
+      <div><h3>Programs</h3><a href="regular-tuition.html">Regular Tuition</a><a href="techno-tuition.html">Techno Tuition</a><a href="centum-promise.html">Centum Promise</a><a href="test-batch.html">Test Batch</a></div>
+      <div><h3>Contact</h3><a href="tel:9345713457">9345713457</a><a href="https://wa.me/919345713457" target="_blank" rel="noopener">WhatsApp Inquiry</a><a href="mailto:care@smartuitions.com">care@smartuitions.com</a><span>Vadavalli, Coimbatore - 641041</span></div>
+      <div class="footer-social"><h3>Follow Us</h3><a class="social-link youtube-link" href="https://youtube.com/@smartuitions?si=gad-SNChGNYEGBxM" target="_blank" rel="noopener" aria-label="Smartuitions YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31.2 31.2 0 0 0 0 12a31.2 31.2 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.2 31.2 0 0 0 24 12a31.2 31.2 0 0 0-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg><span>smartuitions.youtube.com</span></a><a class="social-link instagram-link" href="https://www.instagram.com/smartuitions.official?igsh=MXB6ZzJscWlxZzgzcQ==" target="_blank" rel="noopener" aria-label="Smartuitions Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.1 2h9.8A5.1 5.1 0 0 1 22 7.1v9.8a5.1 5.1 0 0 1-5.1 5.1H7.1A5.1 5.1 0 0 1 2 16.9V7.1A5.1 5.1 0 0 1 7.1 2zm0 2A3.1 3.1 0 0 0 4 7.1v9.8A3.1 3.1 0 0 0 7.1 20h9.8a3.1 3.1 0 0 0 3.1-3.1V7.1A3.1 3.1 0 0 0 16.9 4H7.1zm9.7 2.1a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4zM12 7.2A4.8 4.8 0 1 1 12 16.8 4.8 4.8 0 0 1 12 7.2zm0 2A2.8 2.8 0 1 0 12 14.8 2.8 2.8 0 0 0 12 9.2z"/></svg><span>smartuitions.instagram.com</span></a></div>
+    </div>
+  </footer>
+
+  <a class="float-whatsapp" href="https://wa.me/919345713457" target="_blank" rel="noopener" aria-label="Contact us on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+  <a class="float-call" href="tel:9345713457" aria-label="Call us"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></a>
+  <script src="script.js"></script>
+</body>
+</html>
